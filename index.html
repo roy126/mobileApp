@@ -6,29 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bpcard</title>
     <link rel="stylesheet" href="css/style.css">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <section class="main">
-        <div class="header_logo">
-            <div class="logo"></div>
-        </div>
-        <div class="container flex_container">
-            <div class="block_main">
-                <div class="block_buttons">
-                    <button id='log_in'>Личный кабинет</button>
-                    <button id='pay'>Оплатить</button>
-                </div>
-                <div class="block_log_in hidden">
-                    <input id="login" type="text" placeholder="Логин">
-                    <input id="password" type="password" placeholder="Пароль">
+    <section class="section_flex">
+        <div class="container">
+            <div class="header">
+                <h4>Авторизация</h4>
+            </div>
+           <div class="block_logo">
+                <div class="logo"></div>
+           </div>
+            <div class="block_buttons">
+                <form class="auth_form">
+                    <input type="text" placeholder="Логин" id="login">
+                    <input type="text" placeholder="Пароль" id="password">
+                    <div id="log_in_result"></div>
+                    <div class="block_pass">
+                        <a href="#">Забыли пароль?</a>
+                    </div>
                     <button id="auth_but">Войти</button>
-                    <div id="log_in_result"> </div>
-                </div>
+                    <p>Если вы впервые,<a href="#">зарегистрируйтесь</a></p>
+                </form>
             </div>
         </div>
     </section>
 </body>
-<script src="js/script.js"></script>
+<script src="js/index.js"></script>
 
 </html>

@@ -98,10 +98,7 @@ input[type='password'] {
     font-weight: normal;
     font-size: 13px;
 }
-#log_in_result{
-    background-color: #fefbf5;
-    box-shadow: 0 0 2px 0 black;
-}
+
 .fio_block h6{
     text-align: center;
     font-size: 15px;
@@ -198,5 +195,80 @@ input[type='password'] {
     color: white;
     font-size: 16px;
     text-transform: uppercase;
+}
+
+/*--------------------------------------*/
+.container{
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+}
+.header{
+    margin-top: 30px;
+}
+.block_logo{
+    margin-top: 50px;
+}
+.logo{
+    margin: 0 auto;
+    height: 90px;
+    width: 190px;
+    background: url(../images/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.auth_form input[type='text']{
+    padding: 15px 5px;
+    border-radius: 5px;
+    width: 80%;
+    margin: 5px auto;
+    border: 1px solid #80808070;
+}
+.auth_form{
+    margin-top: 95px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.auth_form button{
+    width: 100%;
+    padding: 15px 5px;
+    background: #528c1c;
+    border-radius: 28px;
+    border: 0;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+.auth_form p {
+    margin-top: 15px;
+    flex: 0 0 auto;
+}
+.block_buttons{
+    height: 55vh;
+}
+.block_pass{
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.block_pass a{
+    font-size: 13px;
+}
+.auth_form p {
+    font-size: 13px;
+}
+a{
+    color: black;
+}
+.auth_form button:focus{
+    outline: 0;
+    border: 0;
+}
+.auth_form input[type="text"]:focus{
+    outline:  0;
+    border: 1px solid #528c1c;
 
 }
