@@ -27,31 +27,35 @@ if(person_id && Number(person_id) > 0){
 let touchStartY = 0;
 let touchStartX = 0;
 document.body.addEventListener('touchstart', function(e) {
-touchStartY = e.touches[0].clientY;
-touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
 });
 document.body.addEventListener('touchend', function(e) {
-touchEndY = e.changedTouches[0].clientY;
-touchEndX = e.changedTouches[0].clientX;
-let countX = Math.max(touchStartX, touchEndX) - Math.min(touchStartX, touchEndX);
-let countY = 0;
-if (countX > 50) {
-document.body.style.marginTop = 0;
-}
-if (touchStartY < touchEndY) {
-countY = Math.max(touchStartY, touchEndY) - Math.min(touchStartY, touchEndY);
-}
-console.log(countY);
-if (countY < 300) {
-document.body.style.marginTop = 0;
-}
-if (touchStartY < 100) {
-swipe_top_refresh(countX, countY);
-}
+    touchEndY = e.changedTouches[0].clientY;
+    touchEndX = e.changedTouches[0].clientX;
+    let countX = Math.max(touchStartX, touchEndX) - Math.min(touchStartX, touchEndX);
+    let countY = 0;
+        if (countX > 50) {
+            document.querySelector('.main').style.marginTop = 0;
+        }
+        if (touchStartY < touchEndY) {
+            countY = Math.max(touchStartY, touchEndY) - Math.min(touchStartY, touchEndY);
+        }
+        if (countY < 300) {
+            document.querySelector('.main').style.marginTop = 0;
+        }
+        if (touchStartY < 100) {
+            swipe_top_refresh(countX, countY);
+        }
+});
+document.querySelector('.main').addEventListener('touchmove', function(e) {
+    if (e.touches[0].clientY > 10 && e.touches[0].clientY < 150) {
+        document.querySelector('.main').style.marginTop = e.touches[0].clientY / 5+'px';
+    }
 });
 
 function swipe_top_refresh(countX, countY) {
-if (countX > 0 && countX < 50 && countY > 50 && countY < 300) {
-window.location.reload();
-}
+    if (countX > 0 && countX < 50 && countY > 50 && countY < 300) {
+        window.location.reload();
+    }
 }
