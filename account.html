@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+</head>
+<body id="pullDown">
+    <section class="main"  >
+        <div class="header_logo" >
+            <div class="logo"></div>
+        </div>
+        <div class="container_all">
+          <div class="fio_block">
+            <h6>Личные данные</h6>
+            <p>ФИО: <span id='fio'></span></p>
+            <p>Номер лицевого счета: <span id='num_ls'></span></p>
+            <p>email: <span id='email'></span></p>
+            <p>Город: <span id='city'></span></p>
+            <p>Школа: <span id='school'></span></p>
+          </div>
+
+          <div class="children_block">
+                <h6>Дети</h6>
+                <ul class="child_list">
+                </ul>
+          </div>
+          <div class="balance_block">
+              <h6>Баланс</h6>
+              <div class="balance_flex">
+                  <div class="balance_description">ЛС №<br><span id="num_ls_balance"></span></div>
+                  <div class="balance_description">Общий</div>
+              </div>
+              <div class="balance_flex">
+                  <div class="balance_one"></div>
+                  <div class="balance_all"></div>
+              </div>
+          </div>
+          <div class="block_pay">
+              <button>Пополнить счет</button>
+          </div> 
+        </div>
+    </section>
+</body>
+<script>
+   let person_id = window.location.search.replace( '?', '').split('=')[1]; 
+   if(person_id && Number(person_id) > 0){
+    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+        var xhr = new XHR();
+        xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=8&person_id=' + person_id, true);
+        xhr.onload = function() {
+            let result = JSON.parse(this.responseText);
+            console.log(result);
+            if(Number(result.code) === 200){
+                document.querySelector('#fio').innerHTML = result.textsurname + ' ' + result.textname;
+                document.querySelector('#num_ls').innerHTML = result.num_ls;
+                document.querySelector('#email').innerHTML = result.textemail;
+                document.querySelector('#city').innerHTML = result.city;
+                document.querySelector('#school').innerHTML = result.school;
+                document.querySelector('#num_ls_balance').innerHTML = result.num_ls;
+
+                if(result.childrens.length > 0){
+                    let balance_all = 0;
+                    let ul_list = '';
+                    result.childrens.forEach(element => {
+                        ul_list += '<a href="children.html?student_id='+element.student_id+'"><li>' + element.FIO + '</li></a>'
+                        balance_all += Number(element.balance);
+                       if(element.num_ls === result.num_ls){
+                           if(Number(element.balance) <= 0){
+                            document.querySelector('.balance_one').style.border = '5px solid #f05928';
+                           }else if(Number(element.balance) > 0 && Number(element.balance) < 100){
+                            document.querySelector('.balance_one').style.border = '5px solid #4d90fe';
+                           }else if(Number(element.balance) > 100){
+                            document.querySelector('.balance_one').style.border = '5px solid #006633';
+                           }
+                           document.querySelector('.balance_one').innerText = element.balance;
+                       }
+                    });
+                    document.querySelector('.balance_all').innerText = balance_all;
+                    if(Number(balance_all) <= 0){
+                            document.querySelector('.balance_all').style.border = '5px solid #f05928';
+                           }else if(Number(balance_all) > 0 && Number(balance_all) < 100){
+                            document.querySelector('.balance_all').style.border = '5px solid #4d90fe';
+                           }else if(Number(balance_all) > 100){
+                            document.querySelector('.balance_all').style.border = '5px solid #006633';
+                           }
+                    document.querySelector('.child_list').innerHTML = ul_list;
+                }
+            }
+        }
+        xhr.onerror = function() {
+            console.log(this.responseText);
+            alert('Ошибка ' + this.status);
+        }
+        xhr.send();
+   }
+</script>
+<script>
+    $( "#pullDown" ).on( "dragstart", function() {
+        window.location.reload()
+} );
+</script>
+</html>
