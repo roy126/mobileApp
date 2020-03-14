@@ -9,16 +9,39 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/e015611673.js"></script>
 
 </head>
 <body>
     <section class="main">
-      <div class="header_account">
-
-      </div>
-      <div class="body_acoount">
-          
-      </div>
+        <div class="main_block">
+            <div class="header_account">
+                <div class="container flex_header">
+                    <h5 class="ls">Лиц. счет: <span id="num_ls"></span></h5>
+                    <div class="balace_account">
+                        <div class="balance">
+                            <p>Баланс</p>
+                            <p id='balance'></p>
+                        </div>
+                        <div class="cash_icon">
+                            <img src="images/wallet.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body_acoount">
+                <div class="account_buttons">
+                    <div class="button_account">
+                        <i class="fa fa-rub" aria-hidden="true"></i>
+                        <p>Пополнить баланс</p>
+                    </div>
+                    <div class="button_account">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        <p>История операций</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </body>
 <script>
@@ -31,40 +54,17 @@
             let result = JSON.parse(this.responseText);
             console.log(result);
             if(Number(result.code) === 200){
-                document.querySelector('#fio').innerHTML = result.textsurname + ' ' + result.textname;
                 document.querySelector('#num_ls').innerHTML = result.num_ls;
-                document.querySelector('#email').innerHTML = result.textemail;
-                document.querySelector('#city').innerHTML = result.city;
-                document.querySelector('#school').innerHTML = result.school;
-                document.querySelector('#num_ls_balance').innerHTML = result.num_ls;
-
                 if(result.childrens.length > 0){
                     let balance_all = 0;
-                    let ul_list = '';
                     result.childrens.forEach(element => {
-                        ul_list += '<a href="children.html?student_id='+element.student_id+'"><li>' + element.FIO + '</li></a>'
+                        
                         balance_all += Number(element.balance);
-                       if(element.num_ls === result.num_ls){
-                           if(Number(element.balance) <= 0){
-                            document.querySelector('.balance_one').style.border = '5px solid #f05928';
-                           }else if(Number(element.balance) > 0 && Number(element.balance) < 100){
-                            document.querySelector('.balance_one').style.border = '5px solid #4d90fe';
-                           }else if(Number(element.balance) > 100){
-                            document.querySelector('.balance_one').style.border = '5px solid #006633';
-                           }
-                           document.querySelector('.balance_one').innerText = element.balance;
-                       }
+                       
+                           document.querySelector('#balance').innerText = element.balance;
+                       
                     });
-                    document.querySelector('.balance_all').innerText = balance_all;
-                    if(Number(balance_all) <= 0){
-                            document.querySelector('.balance_all').style.border = '5px solid #f05928';
-                           }else if(Number(balance_all) > 0 && Number(balance_all) < 100){
-                            document.querySelector('.balance_all').style.border = '5px solid #4d90fe';
-                           }else if(Number(balance_all) > 100){
-                            document.querySelector('.balance_all').style.border = '5px solid #006633';
-                           }
-                    document.querySelector('.child_list').innerHTML = ul_list;
-                }
+                }           
             }
         }
         xhr.onerror = function() {
@@ -73,10 +73,5 @@
         }
         xhr.send();
    }
-</script>
-<script>
-    $( "#pullDown" ).on( "dragstart", function() {
-        window.location.reload()
-} );
 </script>
 </html>

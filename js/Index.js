@@ -1,7 +1,6 @@
 let auth_but = document.querySelector('#auth_but');
 
-$('.auth_form').submit(function(e){
-    e.preventDefault();
+$('#auth_but').click(function(e){
     let login = document.querySelector('#login').value;
     let password = document.querySelector('#password').value;
     if (login && password) {
@@ -26,6 +25,8 @@ $('.auth_form').submit(function(e){
             console.log('Ошибка ' + this.status);
         }
         xhr.send();
+    }else{
+        document.querySelector('#log_in_result').innerHTML = '<span style="color:red;font-width: 700;">Заполните поля!<span>';
     }
 });
 
