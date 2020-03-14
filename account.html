@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
     <link rel="stylesheet" href="css/style.css">
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/e015611673.js"></script>
-
 </head>
 <body>
     <section class="main">
@@ -44,34 +39,5 @@
         </div>
     </section>
 </body>
-<script>
-   let person_id = window.location.search.replace( '?', '').split('=')[1]; 
-   if(person_id && Number(person_id) > 0){
-    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
-        var xhr = new XHR();
-        xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=8&person_id=' + person_id, true);
-        xhr.onload = function() {
-            let result = JSON.parse(this.responseText);
-            console.log(result);
-            if(Number(result.code) === 200){
-                document.querySelector('#num_ls').innerHTML = result.num_ls;
-                if(result.childrens.length > 0){
-                    let balance_all = 0;
-                    result.childrens.forEach(element => {
-                        
-                        balance_all += Number(element.balance);
-                       
-                           document.querySelector('#balance').innerText = element.balance;
-                       
-                    });
-                }           
-            }
-        }
-        xhr.onerror = function() {
-            console.log(this.responseText);
-            alert('Ошибка ' + this.status);
-        }
-        xhr.send();
-   }
-</script>
+<script src="js/account.js"></script>
 </html>

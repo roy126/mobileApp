@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bpcard</title>
     <link rel="stylesheet" href="css/style.css">
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -21,6 +17,7 @@
                 <div class="logo"></div>
            </div>
             <div class="block_buttons">
+                <div class="container">
                 <div class="auth_form">
                     <input type="text" placeholder="Логин" id="login">
                     <input type="text" placeholder="Пароль" id="password">
@@ -28,10 +25,11 @@
                     <div class="block_pass">
                         <a href="#">Забыли пароль?</a>
                     </div>
-                    <button id="auth_but">Войти</button>
-                    <p>Если вы впервые,<a href="#">зарегистрируйтесь</a></p>
+                    <input type="submit" id="auth_but" value="Войти">
+                    <p>Если вы впервые, <a href="#">зарегистрируйтесь</a></p>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 </body>

@@ -334,10 +334,9 @@ a{
     width: 150px;
     height: 120px;
     margin: 0 20px;
-    box-shadow: 0 0 4px 0px #80808061;
+    border: 1px solid #80808061;
     border-radius: 5px;
     text-align: center;
-    border: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -345,6 +344,7 @@ a{
 }
 .account_buttons{
     display:flex;
+    width: 100%;
 }
 .button_account i{
     font-size: 35px;
@@ -359,4 +359,19 @@ a{
 }
 .cash_icon img{
     width: 100%;
+}
+#auth_but{
+    width: 100%;
+    padding: 15px 5px;
+    background: #528c1c;
+    border-radius: 28px;
+    border: 0;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+#auth_but:focus{
+    outline: 0;
+    border: 0;
 }
