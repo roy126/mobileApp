@@ -34,7 +34,7 @@ document.body.addEventListener('touchend', function(e) {
   touchEndY = e.changedTouches[0].clientY;
   touchEndX = e.changedTouches[0].clientX;
 
-  if (touchStartX < 100 && touchEndX < 150) {
+  if (touchStartX < 100 && touchEndX < 450) {
     if ((touchEndX - touchStartX) > 20) {
       history.back();
     } else {
