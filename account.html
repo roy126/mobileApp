@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account</title>
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://use.fontawesome.com/e015611673.js"></script>
 </head>
+
 <body>
-    <section class="main">
-        <div class="main_block">
-            <div class="header_account">
-                <div class="container flex_header">
-                    <h5 class="ls">Лиц. счет: <span id="num_ls"></span></h5>
-                    <div class="balace_account">
-                        <div class="balance">
-                            <p>Баланс</p>
-                            <p id='balance'></p>
-                        </div>
-                        <div class="cash_icon">
-                            <img src="images/wallet.png" alt="">
-                        </div>
-                    </div>
-                </div>
+  <section class="main">
+    <div class="main_block">
+      <div class="header_account">
+        <div class="container flex_header">
+          <h5 class="ls">Лиц. счет: <span id="num_ls"></span></h5>
+          <div class="balace_account">
+            <div class="balance">
+              <p>Баланс</p>
+              <p class="balance_rub"><span id="balance"></span> <i class="fa fa-rub " aria-hidden="true"></i></p>
             </div>
-            <div class="body_acoount">
-                <div class="account_buttons">
-                    <div class="button_account">
-                        <i class="fa fa-rub" aria-hidden="true"></i>
-                        <p>Пополнить баланс</p>
-                    </div>
-                    <div class="button_account">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                        <p>История операций</p>
-                    </div>
-                </div>
+            <div class="cash_icon">
+              <img src="images/wallet.png" alt="">
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="body_acoount">
+        <div class="account_buttons">
+          <div class="button_account">
+            <i class="fa fa-rub" aria-hidden="true"></i>
+            <p>Пополнить баланс</p>
+          </div>
+          <a id="history_link" href="" style="text-decoration: none;">
+            <div class="button_account">
+              <i class="fa fa-list" aria-hidden="true"></i>
+              <p>История операций</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
 <script src="js/account.js"></script>
+
 </html>
