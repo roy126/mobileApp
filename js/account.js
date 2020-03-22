@@ -84,6 +84,8 @@ document.querySelector('.childrens').onclick = function(e){
   });
   if(e.target.classList.contains('child')){
     e.target.classList.add('child_active'); 
+    document.querySelector('#bufet_check').removeAttribute('disabled');
+    document.querySelector('#credit_check').removeAttribute('disabled');
     let item_child;
     if(Number(e.target.getAttribute('student_id'))> 0){
       childrens.forEach(item => {
@@ -99,17 +101,31 @@ document.querySelector('.childrens').onclick = function(e){
       document.querySelector('#city_child').innerText = item_child.city;
       document.querySelector('#school_child').innerText = item_child.num_school;
       document.querySelector('#class_child').innerText = item_child.num_class;
-      if(!!item_child.bufet){
+      if(!!Number(item_child.bufet)){
         document.querySelector('#bufet_check').setAttribute('checked','true');
       }else{
         document.querySelector('#bufet_check').removeAttribute('checked');
       }
 
-      if(!!item_child.credit){
+      if(!!Number(item_child.credit)){
         document.querySelector('#credit_check').setAttribute('checked','true');
       }else{
         document.querySelector('#credit_check').removeAttribute('checked');
       }
+    }
+  }
+  document.querySelector('#bufet_check').onchange = function(e){
+    if(this.checked){
+      this.setAttribute('checked','true');
+    }else{
+      this.removeAttribute('checked');
+    }
+  }
+  document.querySelector('#credit_check').onchange = function(e){
+    if(this.checked){
+      this.setAttribute('checked','true');
+    }else{
+      this.removeAttribute('checked');
     }
   }
 }
