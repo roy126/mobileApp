@@ -39,3 +39,10 @@ auth_but.onclick = function(e) {
     document.querySelector('#log_in_result').innerHTML = '<span style="color:red;font-width: 700;">Заполните поля!<span>';
   }
 };
+//Предзагрузка страницы
+document.onreadystatechange = function(){
+  if(document.readyState === 'complete'){
+    let obj = document.querySelector('#load');
+    obj.style.display= 'none';
+  }
+}

@@ -7,10 +7,13 @@
   <title>Account</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://use.fontawesome.com/e015611673.js"></script>
+
 </head>
 
 <body>
+ 
   <section class="main">
+    <div id="load"></div>
     <div class="main_block">
       <div class="header_account">
         <div class="container flex_header">
@@ -21,17 +24,18 @@
               <p class="balance_rub"><span id="balance"></span> <i class="fa fa-rub " aria-hidden="true"></i></p>
             </div>
             <div class="cash_icon">
-              <img src="images/wallet.png" alt="">
+              <i id="but_children" class="fa fa-users" aria-hidden="true"></i>
+              <!--<img src="images/wallet.png" alt="" id="but_children">-->
             </div>
           </div>
         </div>
       </div>
       <div class="body_acoount">
         <div class="account_buttons">
-          <div class="button_account">
+          <a id="pay_link" href="" style="text-decoration: none;"><div class="button_account">
             <i class="fa fa-rub" aria-hidden="true"></i>
             <p>Пополнить баланс</p>
-          </div>
+          </div></a>
           <a id="history_link" href="" style="text-decoration: none;">
             <div class="button_account">
               <i class="fa fa-list" aria-hidden="true"></i>
@@ -42,7 +46,35 @@
       </div>
     </div>
   </section>
+  <section class="children" style="display: none;">
+    <div class="header_account">
+      <div class="container flex_header" style="flex-direction: row;justify-content: center;align-items: center;">
+        <i class="fa fa-chevron-left"  id="back" aria-hidden="true"></i>
+        <h5 class="h5_child">Дети</h5>
+      </div>
+    </div>
+    <ul class="childrens"></ul>
+    <div class="child_balance">
+      <p>Номер ЛС: <span id="num_ls_child"></span></p>
+      <p>Баланс: <span id="balance_child"></span></p>
+    </div>
+    <div class="child_info">
+      <p>ФИО: <span id="fio_child"></span></p>
+      <p>Город: <span id="city_child"></span></p>
+      <p>Школа: <span id="school_child"></span></p>
+      <p>Класс: <span id="class_child"></span></p>
+    </div>
+    <div class="child_check">
+      <div class="child_check_group">
+        <label for="bufet_check">Буфет: 
+          <input type="checkbox" id="bufet_check"></label>
+      </div>
+      <div class="child_check_group">
+        <label for="credit_check">Кредит: 
+          <input type="checkbox" id="credit_check"></label>
+      </div>
+    </div>
+  </section>
 </body>
 <script src="js/account.js"></script>
-
 </html>

@@ -47,3 +47,11 @@ document.body.addEventListener('touchmove', function(e) {
     document.body.style.marginLeft = e.touches[0].clientX / 5 + 'px';
   }
 });
+
+//Предзагрузка страницы
+document.onreadystatechange = function(){
+  if(document.readyState === 'complete'){
+    let obj = document.querySelector('#load');
+    obj.style.display= 'none';
+  }
+}

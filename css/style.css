@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700&display=swap');
+@font-face{
+  font-family: 'MyWebFont';
+  src: url('../css/fonts/Akrobat-Regular.eot') format('eot'),
+  url('../css/fonts/Akrobat-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  }
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +12,8 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'myWebFont';
+
 }
 
 .main {
@@ -382,7 +389,6 @@ a {
 .button_account {
   width: 150px;
   height: 120px;
-  margin: 0 20px;
   border: 1px solid #e7e7e7;
   border-radius: 5px;
   text-align: center;
@@ -394,6 +400,7 @@ a {
 
 .account_buttons {
   display: flex;
+  justify-content: space-around;
   width: 100%;
 }
 
@@ -545,4 +552,86 @@ a {
 
 .block_history {
   margin-top: 25px;
+}
+#load{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+}
+#load:before{
+  position: absolute;
+  content: '';
+  background-image: url(../images/logo.png);
+  background-size: 180px 100px;
+  background-repeat: no-repeat;
+  width: 175px;
+  height: 100px;
+  top: 0;
+  margin: auto;
+  left: 16px;
+  right: 0;
+  bottom: 0;
+}
+.childrens li{
+  padding: 10px;
+  background: #fff;
+}
+.child_active{
+  background: #528c1c !important;
+  color:#fff;
+}
+.h5_child{
+  font-size: 20px;
+  color: white;
+  padding: 10px 0px;
+  flex: 100%;
+}
+.childrens{
+  margin-top: 10px;
+  border-top: 1px solid #d2d2d2;
+}
+.child_balance{
+  padding: 10px;
+  border:1px solid #e2e2e2;
+  border-radius: 5px;
+  border-bottom: 1px solid #528c1c;
+  width: 80%;
+  margin: 10px auto;
+}
+.child_balance p{
+  padding: 5px 0;
+}
+.child_balance span{
+  font-weight: 700;
+}
+.child_info span{
+  font-weight: 700;
+}
+.child_info{
+  padding: 10px;
+  border:1px solid #e2e2e2;
+  border-radius: 5px;
+  border-bottom: 1px solid #528c1c;
+  width: 80%;
+  margin: 10px auto;
+}
+.child_info p{
+  padding: 5px 0;
+}
+.child_check{
+  padding: 10px;
+  border:1px solid #e2e2e2;
+  border-radius: 5px;
+  border-bottom: 1px solid #528c1c;
+  width: 80%;
+  margin: 10px auto;
+}
+.child_check_group{
+  margin: 5px 0;
+}
+#back{
+  color:white;
 }
