@@ -635,4 +635,58 @@ a {
 #back{
   color:white;
 }
+#credit_price_block{
+  display: none;
+}
+#credit_price{
+  width: 80px;
+  padding: 5px;
+  border: 1px solid #528c1c;
+  border-radius: 5px;
+}
+.add_reb{
+  width: 100%;
+  padding: 5px;
+  color: white;
+  border: 0;
+  margin-top: 5px;
+  background: #528c1c;
+}
 
+#back_to_childrens{
+  color:#fff;
+}
+
+
+.form_add_reb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 70%;
+}
+
+.form_add_reb input[type='text']{
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #054924;
+  outline: none;
+  border-radius: 5px;
+}
+#add_reb_but{
+  width: 100%;
+    padding: 15px 5px;
+    background: #528c1c;
+    border-radius: 28px;
+    border: 0;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+#add_reb_result{
+  font-size: 13px;
+    text-align: center;
+    margin-top: 10px;
+}

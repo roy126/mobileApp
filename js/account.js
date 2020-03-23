@@ -72,6 +72,7 @@ document.onreadystatechange = function(){
 
 let main = document.querySelector('section.main');
 let children = document.querySelector('section.children');
+let add_child = document.querySelector('.add_child');
 
 document.querySelector('#but_children').onclick = function(){
   main.style.display = 'none';
@@ -86,6 +87,7 @@ document.querySelector('.childrens').onclick = function(e){
     e.target.classList.add('child_active'); 
     document.querySelector('#bufet_check').removeAttribute('disabled');
     document.querySelector('#credit_check').removeAttribute('disabled');
+    document.querySelector('#credit_check').classList.remove('valid_input');
     let item_child;
     if(Number(e.target.getAttribute('student_id'))> 0){
       childrens.forEach(item => {
@@ -101,37 +103,117 @@ document.querySelector('.childrens').onclick = function(e){
       document.querySelector('#city_child').innerText = item_child.city;
       document.querySelector('#school_child').innerText = item_child.num_school;
       document.querySelector('#class_child').innerText = item_child.num_class;
+      document.querySelector('#credit_price').value = item_child.credit_price;
+      document.querySelector('#bufet_check').setAttribute('student_id', item_child.student_id);
+      document.querySelector('#credit_check').setAttribute('student_id', item_child.student_id);
+      document.querySelector('#credit_price').setAttribute('student_id', item_child.student_id);
+      document.querySelector('#history_link_reb').setAttribute('href','history.html?num_ls=' + item_child.num_ls)
       if(!!Number(item_child.bufet)){
-        document.querySelector('#bufet_check').setAttribute('checked','true');
+        document.querySelector('#bufet_check').checked =true;
       }else{
-        document.querySelector('#bufet_check').removeAttribute('checked');
+        document.querySelector('#bufet_check').checked =false;
       }
-
       if(!!Number(item_child.credit)){
-        document.querySelector('#credit_check').setAttribute('checked','true');
+        document.querySelector('#credit_check').checked =true;
+        document.querySelector('#credit_price_block').style.display = 'block';
       }else{
-        document.querySelector('#credit_check').removeAttribute('checked');
+        document.querySelector('#credit_check').checked =false;
+        document.querySelector('#credit_price_block').style.display = 'none';
       }
     }
   }
   document.querySelector('#bufet_check').onchange = function(e){
-    if(this.checked){
-      this.setAttribute('checked','true');
-    }else{
-      this.removeAttribute('checked');
-    }
+    let student_id = this.getAttribute('student_id');
+    let value = this.checked;
+    editCheck(1,value,student_id);
   }
   document.querySelector('#credit_check').onchange = function(e){
+    let student_id = this.getAttribute('student_id');
+    let value = this.checked;
     if(this.checked){
-      this.setAttribute('checked','true');
+      document.querySelector('#credit_price_block').style.display = 'block';
     }else{
-      this.removeAttribute('checked');
+      document.querySelector('#credit_price_block').style.display = 'none';
     }
+    editCheck(2,value,student_id);
   }
+
+  document.querySelector('#credit_price').onchange = function(e,a,v){
+    if(!isNaN(Number(this.value))){
+      let student_id = this.getAttribute('student_id');
+      let summ = Number(this.value);
+      if(summ > 150 || summ < 0){
+        this.classList.add('valid_input');
+      }else{
+        editCheck(3,'',student_id,summ);
+      }
+    }
+  };
 }
 
 
 document.querySelector('#back').onclick = function(){
   main.style.display = 'block';
   children.style.display = 'none';
+  add_child.style.display = 'none';
+}
+document.querySelector('#back_to_childrens').onclick = function(){
+  main.style.display = 'none';
+  children.style.display = 'block';
+  add_child.style.display = 'none';
+}
+document.querySelector('.add_reb').onclick = function(){
+  main.style.display = 'none';
+  children.style.display = 'none';
+  add_child.style.display = 'block';
+  document.querySelector('#fio_reb_add').value = '';
+  document.querySelector('#num_ls_reb_add').value = '';
+  document.querySelector('#add_reb_result').innerHTML = '';
+}
+
+function editCheck(type,value,student_id,summ){
+  if(type && student_id){
+    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+    var xhr = new XHR();
+    let value2 = +value;
+    xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=11&student_id='+ student_id + '&value=' + value2 + '&type='+ type + '&summ='+ summ, true);
+    xhr.onload = function() {
+      let result = JSON.parse(this.responseText);
+    }
+    xhr.send();
+  }
+}
+
+document.querySelector('#add_reb_but').onclick = function(){
+  let fio = document.querySelector('#fio_reb_add');
+  let num_ls = document.querySelector('#num_ls_reb_add');
+  if(fio.value && num_ls.value){
+    fio.classList.remove('valid_input');
+    num_ls.classList.remove('valid_input');
+    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+    var xhr = new XHR();
+    xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=12&num_ls='+ num_ls.value + '&fio='+ fio.value + '&person_id='+ person_id, true);
+    xhr.onload = function() {
+      let result = JSON.parse(this.responseText);
+      let res = '';
+      if(Number(result.code) === 202){
+        res ='<span style="color:red;">'+result.msg+'</span>';
+      }else{
+        res ='<span style="color:green;">'+result.msg+'</span>';
+      }
+      document.querySelector('#add_reb_result').innerHTML = res;
+    }
+    xhr.send();
+  }else{
+    if(!fio.value){
+      fio.classList.add('valid_input');
+    }else{
+      fio.classList.remove('valid_input');
+    }
+    if(!num_ls.value){
+      num_ls.classList.add('valid_input');
+    }else{
+      num_ls.classList.remove('valid_input');
+    }
+  }
 }
