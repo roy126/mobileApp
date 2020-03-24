@@ -55,3 +55,7 @@ document.onreadystatechange = function(){
     obj.style.display= 'none';
   }
 }
+
+document.querySelector('#back_to_childrens').onclick = function(){
+  history.back();
+}

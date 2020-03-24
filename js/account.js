@@ -315,5 +315,15 @@ document.querySelector('.cash_flow_but').onclick = function() {
     document.querySelector('.result_cash_flow').innerHTML = '<span style="color:red;display:block;text-align:center;">Сумма превышает баланс</span>';
     return;
   }
-
+  var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+  var xhr = new XHR();
+  xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=13&from=' + obj_from[obj_from_index].value + '&to='+ obj_to[obj_to_index].value+'&summ=' +obj_summ_flow.value, true);
+  xhr.onload = function() {
+    let result = JSON.parse(this.responseText);
+    if(Number(result.code) === 200){
+      obj_summ_flow.value = '';
+      document.querySelector('.result_cash_flow').innerHTML = '<span style="color:green;display:block;text-align:center;">'+result.msg+'</span>';
+    }
+  }
+  xhr.send();
 }

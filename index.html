@@ -6,11 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>bpcard</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://use.fontawesome.com/e015611673.js"></script>
 </head>
 
 <body>
   <div id="load"></div>
-  <section class="section_flex">
+  <section class="section_flex" id="section_auth">
     <div class="container">
       <div class="header">
         <h4>Авторизация</h4>
@@ -24,13 +25,57 @@
           <input type="password" placeholder="Пароль" id="password">
           <div id="log_in_result"></div>
           <div class="block_pass">
-            <a href="res_password.html">Забыли пароль?</a>
+            <a id="but_res_pass">Забыли пароль?</a>
           </div>
           <input type="submit" id="auth_but" value="Войти">
-          <p>Если вы впервые, <a href="register.html">зарегистрируйтесь</a></p>
+          <p>Если вы впервые, <a id="but_registry">зарегистрируйтесь</a></p>
         </div>
       </div>
     </div>
+  </section>
+  <section id="section_res_pass" class="section_flex body_acoount" style="display:none;background-size: cover;align-items: start; height: 100vh;">
+      <div class="header_account">
+        <div class="container flex_header" style="flex-direction: row;justify-content: center;align-items: center;">
+          <i class="fa fa-chevron-left" id="back_to_auth" aria-hidden="true"></i>
+          <h5 class="h5_child">Восстановить пароль</h5>
+        </div>
+        <div class="body_acoount" style="height: 100vh;align-items: flex-start;padding-top: 1px;">
+          <div class="reset_block">
+            <div class="block_logo">
+              <a href="index.html">
+                <div class="logo"></div>
+              </a>
+            </div>
+            <div class="reset_pass_form">
+              <input type="text" placeholder="Введите ваш логин или email..." id="login_email">
+              <input type="submit" id="res_pass_but" value="Восстановить">
+            </div>
+            <div id="reset_log_result"></div>
+          </div>
+        </div>
+    </div>
+  </section>
+  <section id="section_registry" class="section_flex body_acoount" style="display:none;background-size: cover;align-items: start; height: 100vh;">
+    <div class="header_account">
+      <div class="container flex_header" style="flex-direction: row;justify-content: center;align-items: center;">
+        <i class="fa fa-chevron-left" id="back_to_auth2" aria-hidden="true"></i>
+        <h5 class="h5_child">Регистрация</h5>
+      </div>
+      <div class="body_acoount" style="height: 100vh;align-items: flex-start;padding-top: 1px;">
+        <div class="reg_form">
+          <input type="text" placeholder="Логин" id="login_input">
+          <input type="password" placeholder="Пароль" id="password_input">
+          <input type="password" placeholder="Пароль еще раз" id="password2_input">
+          <input type="text" placeholder="Ваше имя" id="name_input">
+          <input type="text" placeholder="Ваша фамилия" id="family_input">
+          <input type="text" placeholder="ФИО ребенка с заглавных букв через пробелы" id="fio_reb_input">
+          <input type="text" placeholder="Лицевой счет ребенка...код карты без пробелов" id="num_ls_input">
+          <input type="text" placeholder="Адрес электронной почты (e-mail)..." id="email_input"> 
+          <input type="submit" id="reg_but" value="Регистрация">
+          <div id="reg_log_result"></div>
+        </div>
+      </div>
+  </div>
   </section>
 </body>
 <script src="js/Index.js"></script>
