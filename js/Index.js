@@ -40,9 +40,9 @@ auth_but.onclick = function(e) {
   }
 };
 //Предзагрузка страницы
-document.onreadystatechange = function(){
-  if(document.readyState === 'complete'){
+document.onreadystatechange = function() {
+  if (document.readyState === 'complete') {
     let obj = document.querySelector('#load');
-    obj.style.display= 'none';
+    obj.style.display = 'none';
   }
 }

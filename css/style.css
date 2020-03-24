@@ -1,10 +1,4 @@
-@font-face{
-  font-family: 'MyWebFont';
-  src: url('../css/fonts/Akrobat-Regular.eot') format('eot'),
-  url('../css/fonts/Akrobat-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  }
+@import url('https://fonts.googleapis.com/css?family=Exo+2|Roboto&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -12,8 +6,8 @@
 }
 
 body {
-  font-family: 'myWebFont';
-
+  /*font-family: 'Exo 2', sans-serif;*/
+  font-family: 'Roboto', sans-serif;
 }
 
 .main {
@@ -553,7 +547,8 @@ a {
 .block_history {
   margin-top: 25px;
 }
-#load{
+
+#load {
   position: fixed;
   left: 0;
   top: 0;
@@ -561,90 +556,110 @@ a {
   bottom: 0;
   background: #fff;
 }
-#load:before{
+
+#load:before {
   position: absolute;
   content: '';
   background-image: url(../images/logo.png);
-  background-size: 180px 100px;
+  background-size: contain;
   background-repeat: no-repeat;
-  width: 175px;
-  height: 100px;
-  top: 0;
+  width: 50%;
+  top: 40%;
   margin: auto;
-  left: 16px;
+  left: 15px;
   right: 0;
   bottom: 0;
 }
-.childrens li{
+
+.childrens li {
   padding: 10px;
   background: #fff;
 }
-.child_active{
+
+.child_active {
   background: #528c1c !important;
-  color:#fff;
+  color: #fff;
 }
-.h5_child{
+
+.h5_child {
   font-size: 20px;
   color: white;
+  font-weight: 300;
   padding: 10px 0px;
   flex: 100%;
 }
-.childrens{
+
+.childrens {
   margin-top: 10px;
   border-top: 1px solid #d2d2d2;
 }
-.child_balance{
+
+.child_balance {
   padding: 10px;
-  border:1px solid #e2e2e2;
+  border: 1px solid #e2e2e2;
   border-radius: 5px;
   border-bottom: 1px solid #528c1c;
   width: 80%;
+  font-size: 13px;
   margin: 10px auto;
 }
-.child_balance p{
+
+.child_balance p {
   padding: 5px 0;
 }
-.child_balance span{
+
+.child_balance span {
   font-weight: 700;
 }
-.child_info span{
+
+.child_info span {
   font-weight: 700;
 }
-.child_info{
+
+.child_info {
   padding: 10px;
-  border:1px solid #e2e2e2;
+  border: 1px solid #e2e2e2;
   border-radius: 5px;
+  font-size: 13px;
   border-bottom: 1px solid #528c1c;
   width: 80%;
   margin: 10px auto;
 }
-.child_info p{
+
+.child_info p {
   padding: 5px 0;
 }
-.child_check{
+
+.child_check {
   padding: 10px;
-  border:1px solid #e2e2e2;
+  border: 1px solid #e2e2e2;
   border-radius: 5px;
   border-bottom: 1px solid #528c1c;
   width: 80%;
   margin: 10px auto;
+  font-size: 13px;
 }
-.child_check_group{
+
+.child_check_group {
   margin: 5px 0;
 }
-#back{
-  color:white;
+
+#back {
+  color: white;
 }
-#credit_price_block{
+
+#credit_price_block {
   display: none;
 }
-#credit_price{
+
+#credit_price {
   width: 80px;
   padding: 5px;
   border: 1px solid #528c1c;
   border-radius: 5px;
 }
-.add_reb{
+
+.add_reb {
   width: 100%;
   padding: 5px;
   color: white;
@@ -653,10 +668,13 @@ a {
   background: #528c1c;
 }
 
-#back_to_childrens{
-  color:#fff;
+#back_to_childrens {
+  color: #fff;
 }
 
+#back_to_childrens_2 {
+  color: #fff;
+}
 
 .form_add_reb {
   display: flex;
@@ -666,7 +684,7 @@ a {
   width: 70%;
 }
 
-.form_add_reb input[type='text']{
+.form_add_reb input[type='text'] {
   width: 100%;
   margin: 5px 0;
   padding: 10px;
@@ -674,19 +692,83 @@ a {
   outline: none;
   border-radius: 5px;
 }
-#add_reb_but{
+
+#add_reb_but {
   width: 100%;
-    padding: 15px 5px;
-    background: #528c1c;
-    border-radius: 28px;
-    border: 0;
-    color: white;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    font-size: 15px;
+  padding: 15px 5px;
+  background: #528c1c;
+  border-radius: 28px;
+  border: 0;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 15px;
 }
-#add_reb_result{
+
+#add_reb_result {
   font-size: 13px;
-    text-align: center;
-    margin-top: 10px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.form_group select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #417505;
+  border-radius: 5px;
+}
+
+.form_group {
+  margin: 10px 0;
+}
+
+.cash_block {
+  width: 80%;
+}
+
+.form_group label {
+  font-size: 13px;
+  padding: 5px;
+  color: #a2a2a2;
+}
+
+.form_group select:focus {
+  outline: none;
+}
+
+.cash_flow_but {
+  width: 100%;
+  padding: 15px 5px;
+  background: #528c1c;
+  border-radius: 28px;
+  border: 0;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  transition: .5s;
+}
+
+.cash_flow_but:focus {
+  outline: none;
+}
+
+.cash_flow_but:active {
+  opacity: 0.5;
+  transition: .5s;
+}
+
+.result_cash_flow {
+  padding: 15px;
+  font-size: 13px;
+}
+
+#count_cash_flow {
+  padding: 5px;
+  border: 1px solid #417505;
+  border-radius: 5px;
+}
+
+#count_cash_flow:focus {
+  outline: none;
 }

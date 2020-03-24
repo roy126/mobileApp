@@ -11,7 +11,7 @@
 </head>
 
 <body>
- 
+
   <section class="main">
     <div id="load"></div>
     <div class="main_block">
@@ -32,10 +32,12 @@
       </div>
       <div class="body_acoount">
         <div class="account_buttons">
-          <a id="pay_link" href="" style="text-decoration: none;"><div class="button_account">
-            <i class="fa fa-rub" aria-hidden="true"></i>
-            <p>Пополнить баланс</p>
-          </div></a>
+          <a id="pay_link" href="" style="text-decoration: none;">
+            <div class="button_account">
+              <i class="fa fa-rub" aria-hidden="true"></i>
+              <p>Пополнить баланс</p>
+            </div>
+          </a>
           <a id="history_link" href="" style="text-decoration: none;">
             <div class="button_account">
               <i class="fa fa-list" aria-hidden="true"></i>
@@ -49,7 +51,7 @@
   <section class="children" style="display: none;">
     <div class="header_account">
       <div class="container flex_header" style="flex-direction: row;justify-content: center;align-items: center;">
-        <i class="fa fa-chevron-left"  id="back" aria-hidden="true"></i>
+        <i class="fa fa-chevron-left" id="back" aria-hidden="true"></i>
         <h5 class="h5_child">Дети</h5>
       </div>
     </div>
@@ -70,7 +72,7 @@
         <div class="checkbox">
           <label for="color-1">Буфет:</label>
           <input type="checkbox" class="custom-checkbox" disabled id="bufet_check" id="color-1">
-        </div>        
+        </div>
       </div>
       <div class="child_check_group">
         <div class="checkbox">
@@ -82,14 +84,15 @@
         <label for="credit_price">Сумма кредита:</label>
         <input type="number" id="credit_price">
       </div>
-      
+
     </div>
     <div class="account_buttons" style="width: 93%;margin: 10px auto;">
-      <a id="pay_cash_link"  style="text-decoration: none;"><div class="button_account" style="    width: 120px;
-        height: 100px;">
-        <i class="fa fa-rub" aria-hidden="true"></i>
-        <p>Перевести</p>
-      </div></a>
+      <a id="pay_cash_link" style="text-decoration: none;">
+        <div class="button_account" style="width: 120px;height: 100px;">
+          <i class="fa fa-rub" aria-hidden="true"></i>
+          <p>Перевести</p>
+        </div>
+      </a>
       <a id="history_link_reb" style="text-decoration: none;">
         <div class="button_account" style="    width: 120px;
         height: 100px;">
@@ -103,20 +106,53 @@
     <div class="main_block">
       <div class="header_account">
         <div class="container flex_header" style="flex-direction: row;justify-content: center;align-items: center;">
-          <i class="fa fa-chevron-left"  id="back_to_childrens" aria-hidden="true"></i>
+          <i class="fa fa-chevron-left" id="back_to_childrens" aria-hidden="true"></i>
           <h5 class="h5_child">Добавить ребенка</h5>
         </div>
       </div>
       <div class="body_acoount" style="height: 92vh;">
-          <div class="form_add_reb">
-            <input type="text" placeholder="ФИО ребенка" id="fio_reb_add">
-            <input type="text" placeholder="Лиц/счет ребенка" id="num_ls_reb_add">
-            <button id="add_reb_but">Добавить</button>
-            <div id="add_reb_result"></div>
+        <div class="form_add_reb">
+          <input type="text" placeholder="ФИО ребенка" id="fio_reb_add">
+          <input type="text" placeholder="Лиц/счет ребенка" id="num_ls_reb_add">
+          <button id="add_reb_but">Добавить</button>
+          <div id="add_reb_result"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cash_flow" style="display: none;">
+    <div class="main_block">
+      <div class="header_account">
+        <div class="container flex_header" style="flex-direction: row;justify-content: center;align-items: center;">
+          <i class="fa fa-chevron-left" id="back_to_childrens_2" aria-hidden="true"></i>
+          <h5 class="h5_child">Перевод</h5>
+        </div>
+        <div class="body_acoount" style="height: 100vh;    align-items: flex-start;padding-top: 100px;">
+          <div class="cash_block">
+            <div class="form_group">
+              <label for="">Счет списания
+              <select id="combo_cash_from"></select>
+            </label>
+              <div class="cash_balance_from"></div>
+            </div>
+            <div class="form_group">
+              <label for="">Счет зачисления
+                <select id="combo_cash_to"></select>
+              </label>
+              <div class="cash_balance_to"></div>
+            </div>
+            <div class="form_group">
+              <label for="">Сумма перевода</label>
+              <input type="number" id="count_cash_flow">
+            </div>
+            <button class="cash_flow_but">Перевод</button>
+            <div class="result_cash_flow"></div>
           </div>
+        </div>
       </div>
     </div>
   </section>
 </body>
 <script src="js/account.js"></script>
+
 </html>
