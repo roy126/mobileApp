@@ -8,7 +8,7 @@ if (person_id && Number(person_id) > 0) {
     let result = JSON.parse(this.responseText);
     if (Number(result.code) === 200) {
       document.querySelector('#num_ls').innerHTML = result.num_ls;
-      document.querySelector('#history_link').setAttribute('href', 'history.html?num_ls=' + result.num_ls);
+      get_history(result.num_ls);
       if (result.childrens.length > 0) {
         let balance_all = 0;
         let li = '';
@@ -17,7 +17,6 @@ if (person_id && Number(person_id) > 0) {
           li += '<li class="child" student_id="' + element.student_id + '">' + element.FIO + '</li>';
           balance_all += Number(element.balance);
           document.querySelector('#balance').innerText = element.balance;
-          document.querySelector('#pay_link').setAttribute('href', 'pay.html?num_ls=' + result.num_ls + '&balance=' + element.balance);
         });
         document.querySelector('.childrens').innerHTML = li;
       }
@@ -26,42 +25,6 @@ if (person_id && Number(person_id) > 0) {
   xhr.send();
 }
 
-//TODO Попроавить жесты
-let touchStartY = 0;
-let touchStartX = 0;
-document.body.addEventListener('touchstart', function(e) {
-  touchStartY = e.touches[0].clientY;
-  touchStartX = e.touches[0].clientX;
-});
-document.body.addEventListener('touchend', function(e) {
-  touchEndY = e.changedTouches[0].clientY;
-  touchEndX = e.changedTouches[0].clientX;
-  let countX = Math.max(touchStartX, touchEndX) - Math.min(touchStartX, touchEndX);
-  let countY = 0;
-  if (countX > 50) {
-    document.querySelector('.main').style.marginTop = 0;
-  }
-  if (touchStartY < touchEndY) {
-    countY = Math.max(touchStartY, touchEndY) - Math.min(touchStartY, touchEndY);
-  }
-  if (countY < 300) {
-    document.querySelector('.main').style.marginTop = 0;
-  }
-  if (touchStartY < 100) {
-    swipe_top_refresh(countX, countY);
-  }
-});
-document.querySelector('.main').addEventListener('touchmove', function(e) {
-  if (e.touches[0].clientY > 10 && e.touches[0].clientY < 150) {
-    document.querySelector('.main').style.marginTop = e.touches[0].clientY / 5 + 'px';
-  }
-});
-
-function swipe_top_refresh(countX, countY) {
-  if (countX > 0 && countX < 50 && countY > 50 && countY < 300) {
-    window.location.reload();
-  }
-}
 //Предзагрузка страницы
 document.onreadystatechange = function() {
   if (document.readyState === 'complete') {
@@ -74,11 +37,9 @@ let main = document.querySelector('section.main');
 let children = document.querySelector('section.children');
 let add_child = document.querySelector('.add_child');
 let cash_flow = document.querySelector('.cash_flow');
+let section_pay = document.querySelector('.section_pay');
+let section_history = document.querySelector('.section_history');
 
-document.querySelector('#but_children').onclick = function() {
-  main.style.display = 'none';
-  children.style.display = 'block';
-};
 
 document.querySelector('.childrens').onclick = function(e) {
   document.querySelectorAll('.child').forEach(function(item) {
@@ -108,7 +69,7 @@ document.querySelector('.childrens').onclick = function(e) {
       document.querySelector('#bufet_check').setAttribute('student_id', item_child.student_id);
       document.querySelector('#credit_check').setAttribute('student_id', item_child.student_id);
       document.querySelector('#credit_price').setAttribute('student_id', item_child.student_id);
-      document.querySelector('#history_link_reb').setAttribute('href', 'history.html?num_ls=' + item_child.num_ls)
+      document.querySelector('#history_link_reb').setAttribute('num_ls', item_child.num_ls)
       if (!!Number(item_child.bufet)) {
         document.querySelector('#bufet_check').checked = true;
       } else {
@@ -151,36 +112,94 @@ document.querySelector('.childrens').onclick = function(e) {
     }
   };
 }
+document.querySelector('#but_children').onclick = function() {
+  show_load();
+  main.style.display = 'none';
+  children.style.display = 'block';
+  add_child.style.display = 'none';
+  cash_flow.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
+};
 
 document.querySelector('#back').onclick = function() {
   main.style.display = 'block';
   children.style.display = 'none';
   add_child.style.display = 'none';
   cash_flow.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
 }
 document.querySelector('#back_to_childrens').onclick = function() {
   main.style.display = 'none';
   children.style.display = 'block';
   add_child.style.display = 'none';
   cash_flow.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
 }
 document.querySelector('#back_to_childrens_2').onclick = function() {
   main.style.display = 'none';
   children.style.display = 'block';
   add_child.style.display = 'none';
   cash_flow.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
+}
+document.querySelector('#back_to_account').onclick = function() {
+  main.style.display = 'block';
+  children.style.display = 'none';
+  add_child.style.display = 'none';
+  cash_flow.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
+}
+document.querySelector('#back_to_account2').onclick = function() {
+  if (this.getAttribute('reb')) {
+    children.style.display = 'block';
+    main.style.display = 'none';
+  } else {
+    main.style.display = 'block';
+    children.style.display = 'none';
+  }
+  add_child.style.display = 'none';
+  cash_flow.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
 }
 document.querySelector('.add_reb').onclick = function() {
+  show_load();
   main.style.display = 'none';
   children.style.display = 'none';
   cash_flow.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
   add_child.style.display = 'block';
   document.querySelector('#fio_reb_add').value = '';
   document.querySelector('#num_ls_reb_add').value = '';
   document.querySelector('#add_reb_result').innerHTML = '';
 }
-document.querySelector('#pay_cash_link').onclick = function() {
+document.querySelector('#pay_link').onclick = function() {
+  show_load();
+  main.style.display = 'none';
+  children.style.display = 'none';
+  cash_flow.style.display = 'none';
+  add_child.style.display = 'none';
+  section_history.style.display = 'none';
+  section_pay.style.display = 'block';
+}
+document.querySelector('#history_link').onclick = function() {
+  show_load();
+  main.style.display = 'none';
+  children.style.display = 'none';
+  cash_flow.style.display = 'none';
+  add_child.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'block';
+}
 
+document.querySelector('#pay_cash_link').onclick = function() {
+  show_load();
   if (childrens.length > 1) {
     let options = '<option></option>';
     childrens.forEach((item) => {
@@ -191,7 +210,9 @@ document.querySelector('#pay_cash_link').onclick = function() {
   }
   main.style.display = 'none';
   children.style.display = 'none';
-  add_child.style.display = 'none'
+  add_child.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
   cash_flow.style.display = 'block';
 }
 
@@ -317,13 +338,95 @@ document.querySelector('.cash_flow_but').onclick = function() {
   }
   var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
   var xhr = new XHR();
-  xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=13&from=' + obj_from[obj_from_index].value + '&to='+ obj_to[obj_to_index].value+'&summ=' +obj_summ_flow.value, true);
+  xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=13&from=' + obj_from[obj_from_index].value + '&to=' + obj_to[obj_to_index].value + '&summ=' + obj_summ_flow.value, true);
   xhr.onload = function() {
     let result = JSON.parse(this.responseText);
-    if(Number(result.code) === 200){
+    if (Number(result.code) === 200) {
       obj_summ_flow.value = '';
-      document.querySelector('.result_cash_flow').innerHTML = '<span style="color:green;display:block;text-align:center;">'+result.msg+'</span>';
+      document.querySelector('.result_cash_flow').innerHTML = '<span style="color:green;display:block;text-align:center;">' + result.msg + '</span>';
     }
+  }
+  xhr.send();
+}
+
+////////////pay
+
+document.querySelector('#pay_button').onclick = function(e) {
+  e.preventDefault();
+  let num_ls = document.querySelector('#num_ls_input');
+  let summ = document.querySelector('#summ_input');
+  num_ls.classList.remove('valid_input');
+  summ.classList.remove('valid_input');
+  if (num_ls.value && summ.value) {
+    //pay();
+  } else {
+    if (!num_ls.value) {
+      num_ls.classList.add('valid_input');
+    }
+    if (!summ.value) {
+      summ.classList.add('valid_input');
+    }
+  }
+}
+
+////////////////
+
+function get_history(num_ls) {
+  if (num_ls) {
+    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+    var xhr = new XHR();
+    xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=10&num_ls=' + num_ls, true);
+    xhr.onload = function() {
+      let result = JSON.parse(this.responseText);
+      let list = '';
+      if (result.length > 0) {
+        result.forEach(item => {
+          list += '<li class="operation" style="display: none;">' + item.type_movement + ' / ' + item.amount + ' / Баланс: ' + item.balance + '</li>';
+        });
+        document.querySelector('.history_list').innerHTML = list;
+        $(function() {
+          $(".operation").slice(0, 7).show();
+          $("#loadMore").on('click', function(e) {
+            e.preventDefault();
+            $(".operation:hidden").slice(0, 7).slideDown();
+          })
+        })
+      }
+    }
+    xhr.send();
+  }
+}
+document.querySelector('#history_link_reb').onclick = function() {
+  //get_menu();
+  let num_ls = this.getAttribute('num_ls');
+  if (num_ls) {
+    document.querySelector('#back_to_account2').setAttribute('reb', true);
+    show_load();
+    get_history(num_ls);
+    main.style.display = 'none';
+    children.style.display = 'none';
+    cash_flow.style.display = 'none';
+    add_child.style.display = 'none';
+    section_pay.style.display = 'none';
+    section_history.style.display = 'block';
+  }
+}
+
+function show_load() {
+  let obj = document.querySelector('#load');
+  obj.style.display = 'block';
+  setTimeout(function() {
+    obj.style.display = 'none';
+  }, 800);
+}
+
+function get_menu() {
+  var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+  var xhr = new XHR();
+  xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=14&school=МАОУ Гимназия №1&type_menu=Основное меню', true);
+  xhr.onload = function() {
+    let result = JSON.parse(this.responseText);
+    console.log(result);
   }
   xhr.send();
 }

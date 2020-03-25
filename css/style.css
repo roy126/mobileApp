@@ -529,16 +529,21 @@ a {
   width: 100%;
   text-align: center;
 }
+
 #but_res_pass,
-#but_registry{
+#but_registry {
   text-decoration: underline;
 }
-.reset_block{
+
+.reset_block {
   width: 80%;
 }
+
 #back_to_auth,
-#back_to_auth2{
-  color:white;
+#back_to_auth2,
+#back_to_account,
+#back_to_account2 {
+  color: white;
 }
 
 .history_list {
@@ -575,6 +580,7 @@ a {
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 999999 !important;
   right: 0;
   bottom: 0;
   background: #fff;
@@ -795,47 +801,58 @@ a {
 #count_cash_flow:focus {
   outline: none;
 }
-#auth_but:focus{
+
+#auth_but:focus {
   outline: none;
 }
-#auth_but:active{
+
+#auth_but:active {
   transition: .5s;
   opacity: 0.5;
 }
-.reset_pass_form input[type='submit']:active{
+
+.reset_pass_form input[type='submit']:active {
   transition: .5s;
   opacity: 0.5;
 }
-.reg_form input[type='submit']:active{
+
+.reg_form input[type='submit']:active {
   transition: .5s;
   opacity: 0.5;
 }
-#pay_link:active{
-  outline: none;
-  opacity: 0.5;
-  transition: .5s;
-}
-#history_link:active{
-  outline: none;
-  opacity: 0.5;
-  transition: .5s;
-}
-#but_children:active{
+
+#pay_link:active {
   outline: none;
   opacity: 0.5;
   transition: .5s;
 }
-#add_reb_but:active{
+
+#history_link:active {
   outline: none;
   opacity: 0.5;
   transition: .5s;
 }
-#add_reb_but:focus{
+
+#but_children:active {
+  outline: none;
+  opacity: 0.5;
+  transition: .5s;
+}
+
+#add_reb_but:active {
+  outline: none;
+  opacity: 0.5;
+  transition: .5s;
+}
+
+#add_reb_but:focus {
   outline: none;
 }
-#credit_price:focus{
+
+#credit_price:focus {
   outline: none;
 }
-.back_to_auth{
-  color:white;
+
+.back_to_auth {
+  color: white;
 }

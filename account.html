@@ -7,13 +7,13 @@
   <title>Account</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://use.fontawesome.com/e015611673.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-
+  <div id="load"></div>
   <section class="main">
-    <div id="load"></div>
     <div class="main_block">
       <div class="header_account">
         <div class="container flex_header">
@@ -25,20 +25,19 @@
             </div>
             <div class="cash_icon">
               <i id="but_children" class="fa fa-users" aria-hidden="true"></i>
-              <!--<img src="images/wallet.png" alt="" id="but_children">-->
             </div>
           </div>
         </div>
       </div>
       <div class="body_acoount">
         <div class="account_buttons">
-          <a id="pay_link" href="" style="text-decoration: none;">
+          <a id="pay_link" style="text-decoration: none;">
             <div class="button_account">
               <i class="fa fa-rub" aria-hidden="true"></i>
               <p>Пополнить баланс</p>
             </div>
           </a>
-          <a id="history_link" href="" style="text-decoration: none;">
+          <a id="history_link" style="text-decoration: none;">
             <div class="button_account">
               <i class="fa fa-list" aria-hidden="true"></i>
               <p>История операций</p>
@@ -147,6 +146,39 @@
             </div>
             <button class="cash_flow_but">Перевод</button>
             <div class="result_cash_flow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section_pay" style="display: none;">
+    <div class="main_block">
+      <div class="header_account">
+        <div class="container flex_header" style="flex-direction: row;justify-content: center;align-items: center;">
+          <i class="fa fa-chevron-left" id="back_to_account" aria-hidden="true"></i>
+          <h5 class="h5_child">Пополнить баланс</h5>
+        </div>
+        <div class="body_acoount" style="height: 100vh;    align-items: flex-start;padding-top: 100px;">
+          <form action="" class="form__pay auth_form" style="width: 70%;">
+            <input type="text" placeholder="Лицевой счет" id="num_ls_input">
+            <input type="text" placeholder="Сумма" id="summ_input">
+            <button style="width: 70%;margin: 0 auto;" id="pay_button">Пополнить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section_history" style="display: none;">
+    <div class="main_block">
+      <div class="header_account">
+        <div class="container flex_header" style="flex-direction: row;justify-content: center;align-items: center;">
+          <i class="fa fa-chevron-left" id="back_to_account2" aria-hidden="true"></i>
+          <h5 class="h5_child">История операций</h5>
+        </div>
+        <div class="body_acoount" style="height: 100vh;align-items: flex-start;padding-top: 20px;">
+          <div class="block_history">
+            <ul class="history_list"></ul>
+            <button id="loadMore">Показать еще</button>
           </div>
         </div>
       </div>
