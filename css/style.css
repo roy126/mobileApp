@@ -32,6 +32,24 @@ body {
   margin-top: 90px;
 }
 
+.block_menu {
+  width: 80%;
+}
+
+.block_menu ul {
+  list-style-type: none;
+}
+
+.block_menu ul>li {
+  padding: 5px;
+  background: #528c1c;
+  color: white;
+  display: flex;
+  margin: 5px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .flex_container button {
   width: 100%;
   margin: 5px 0;
@@ -396,6 +414,12 @@ a {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  flex-wrap: wrap;
+}
+
+.account_buttons a {
+  background: #fff;
+  margin-top: 10px;
 }
 
 .button_account i {
