@@ -36,18 +36,33 @@ body {
   width: 80%;
 }
 
-.block_menu ul {
+.ul_menu_main {
   list-style-type: none;
 }
 
-.block_menu ul>li {
-  padding: 5px;
+.menu_item {
+  padding: 10px;
   background: #528c1c;
   color: white;
   display: flex;
   margin: 5px 0;
   justify-content: space-between;
   align-items: center;
+}
+
+.ul_type_food {
+  padding-left: 10px;
+  list-style-type: none;
+}
+
+.ul_type_food li {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  background: #355d06;
+  border-bottom: 1px solid white;
+  align-items: center;
+  color: white;
 }
 
 .flex_container button {
@@ -566,7 +581,8 @@ a {
 #back_to_auth,
 #back_to_auth2,
 #back_to_account,
-#back_to_account2 {
+#back_to_account2,
+#back_to_account3 {
   color: white;
 }
 
@@ -879,4 +895,20 @@ a {
 
 .back_to_auth {
   color: white;
+}
+
+.menu_item_food {
+  background: #fff;
+  margin-left: 5px;
+  padding: 5px;
+  border-bottom: 1px solid;
+  font-size: 13px;
+}
+
+.hidden_menu_type {
+  border: 1px solid;
+}
+
+.menu_item_food:last-child {
+  border-bottom: 0;
 }

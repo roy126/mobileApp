@@ -160,6 +160,14 @@ document.querySelector('#back_to_account').onclick = function() {
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
 }
+document.querySelector('#back_to_account3').onclick = function() {
+  main.style.display = 'block';
+  add_child.style.display = 'none';
+  cash_flow.style.display = 'none';
+  section_menu.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
+}
 document.querySelector('#back_to_account2').onclick = function() {
   if (this.getAttribute('reb')) {
     children.style.display = 'block';
@@ -449,18 +457,44 @@ function get_menu() {
   xhr.onload = function() {
     let result = JSON.parse(this.responseText);
     let li = '';
+
+    console.log(result);
     if (result && result.length > 0) {
       result.forEach(function(item) {
-        item.menu.forEach(function(item_1) {
-
+        let li_type = '';
+        let menu_p = '';
+        item.food.forEach(function(item_1) {
+          if (item_1 === 'Завтрак') {
+            item.type_food[0].forEach(function(item_2) {
+              menu_p += '<p class="menu_item_food">' + item_2.food + '</p>';
+            });
+          } else {
+            item.type_food[1].forEach(function(item_2) {
+              menu_p += '<p class="menu_item_food">' + item_2.food + '</p>';
+            });
+          }
+          li_type += '<li class="menu_food_item"><span>' + item_1 + '</span><i class="fa fa-plus"></i></li>' +
+            '<div style="display:none;" class="hidden_menu_type">' + menu_p + '</div>';
         });
         li += '<li class="menu_item"><span>' + item.day + '</span><i class="fa fa-plus"></i></li>' +
-          '<div style="display: none;" class="hidden_menu">sddsdsdsdsd</div>';
+          '<div style="display: none;" class="hidden_menu">' +
+          '<ul class="ul_type_food">' + li_type + '</ul>' +
+          '</div>';
       });
-      menu_block.innerHTML = '<ul>' + li + '</ul>';
+      menu_block.innerHTML = '<ul class="ul_menu_main">' + li + '</ul>';
     }
     $('.menu_item').click(function(e) {
-      let child = $(this).siblings()[0];
+      let child = $(this).next('.hidden_menu')[0];
+      if ($(this).children('i').hasClass('fa-plus')) {
+        $(this).children('i').removeClass('fa-plus').addClass('fa-minus');
+        child.style.display = 'block';
+      } else {
+        $(this).children('i').removeClass('fa-minus').addClass('fa-plus');
+        child.style.display = 'none';
+      }
+    });
+    $('.menu_food_item').click(function(e) {
+      let child = $(this).next('.hidden_menu_type')[0];
       if ($(this).children('i').hasClass('fa-plus')) {
         $(this).children('i').removeClass('fa-plus').addClass('fa-minus');
         child.style.display = 'block';
