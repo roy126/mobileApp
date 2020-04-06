@@ -122,6 +122,7 @@ document.querySelector('#but_children').onclick = function() {
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
   children.style.display = 'block';
+  hash(true,'children');
 };
 
 document.querySelector('#back').onclick = function() {
@@ -132,6 +133,8 @@ document.querySelector('#back').onclick = function() {
   cash_flow.style.display = 'none';
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
+  hash(false);
+
 }
 document.querySelector('#back_to_childrens').onclick = function() {
   main.style.display = 'none';
@@ -141,6 +144,8 @@ document.querySelector('#back_to_childrens').onclick = function() {
   section_menu.style.display = 'none';
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
+  hash(true,'children');
+
 }
 document.querySelector('#back_to_childrens_2').onclick = function() {
   main.style.display = 'none';
@@ -150,6 +155,8 @@ document.querySelector('#back_to_childrens_2').onclick = function() {
   section_menu.style.display = 'none';
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
+  hash(true,'children');
+
 }
 document.querySelector('#back_to_account').onclick = function() {
   main.style.display = 'block';
@@ -159,6 +166,7 @@ document.querySelector('#back_to_account').onclick = function() {
   section_menu.style.display = 'none';
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
+  hash(false);
 }
 document.querySelector('#back_to_account3').onclick = function() {
   main.style.display = 'block';
@@ -167,6 +175,7 @@ document.querySelector('#back_to_account3').onclick = function() {
   section_menu.style.display = 'none';
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
+  hash(false);
 }
 document.querySelector('#back_to_account2').onclick = function() {
   if (this.getAttribute('reb')) {
@@ -174,6 +183,7 @@ document.querySelector('#back_to_account2').onclick = function() {
     main.style.display = 'none';
   } else {
     main.style.display = 'block';
+    hash(false);
     children.style.display = 'none';
   }
   add_child.style.display = 'none';
@@ -191,6 +201,7 @@ document.querySelector('.add_reb').onclick = function() {
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
   add_child.style.display = 'block';
+  hash(true,'children');
   document.querySelector('#fio_reb_add').value = '';
   document.querySelector('#num_ls_reb_add').value = '';
   document.querySelector('#add_reb_result').innerHTML = '';
@@ -204,6 +215,7 @@ document.querySelector('#pay_link').onclick = function() {
   add_child.style.display = 'none';
   section_history.style.display = 'none';
   section_pay.style.display = 'block';
+  hash(true,'children');
 }
 document.querySelector('#history_link').onclick = function() {
   show_load();
@@ -214,6 +226,7 @@ document.querySelector('#history_link').onclick = function() {
   section_pay.style.display = 'none';
   section_menu.style.display = 'none';
   section_history.style.display = 'block';
+  hash(true,'children');
 }
 document.querySelector('#menu_link').onclick = function() {
   get_menu();
@@ -225,6 +238,7 @@ document.querySelector('#menu_link').onclick = function() {
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
   section_menu.style.display = 'block';
+  hash(true,'children');
 }
 
 document.querySelector('#pay_cash_link').onclick = function() {
@@ -244,6 +258,7 @@ document.querySelector('#pay_cash_link').onclick = function() {
   section_menu.style.display = 'none';
   section_history.style.display = 'none';
   cash_flow.style.display = 'block';
+  hash(true,'children');
 }
 
 function editCheck(type, value, student_id, summ) {
@@ -438,6 +453,7 @@ document.querySelector('#history_link_reb').onclick = function() {
     add_child.style.display = 'none';
     section_pay.style.display = 'none';
     section_history.style.display = 'block';
+    hash(true,'children');
   }
 }
 
@@ -457,8 +473,6 @@ function get_menu() {
   xhr.onload = function() {
     let result = JSON.parse(this.responseText);
     let li = '';
-
-    console.log(result);
     if (result && result.length > 0) {
       result.forEach(function(item) {
         let li_type = '';
@@ -506,3 +520,58 @@ function get_menu() {
   }
   xhr.send();
 }
+
+function func_back_button(){
+  let array = [main,children,add_child,cash_flow,section_pay,section_history,section_menu];
+ array.forEach(function(obj){
+  if(obj.style.display === 'block'){
+   switch(obj.className){
+    case 'children':
+      show_main();
+      break;
+      case 'add_child':
+        show_main();
+      break;
+      case 'cash_flow':
+        show_main();
+      break;
+      case 'section_pay':
+        show_main();
+      break;
+      case 'section_history':
+        show_main();
+      break;
+      case 'section_menu':
+        show_main();
+        break;
+      case 'main':
+        navigator.app.exitApp();
+        break;
+   } 
+  }
+ });
+ function show_main(){
+  children.style.display = 'none';
+  cash_flow.style.display = 'none';
+  add_child.style.display = 'none';
+  section_pay.style.display = 'none';
+  section_history.style.display = 'none';
+  main.style.display = 'block';
+  hash(false);
+ }
+}
+
+function hash(bool,str){
+  if(bool){
+    location.hash = str;
+  }else{
+    location.hash = '';
+  }
+}
+
+window.addEventListener("hashchange", function(e) {
+  if(e.oldURL.length > e.newURL.length)
+  func_back_button();
+})
+
+/* end */

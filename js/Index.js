@@ -1,3 +1,6 @@
+if(localStorage.getItem('person_id')){
+  window.location.href = 'account.html?person_id=' + localStorage.getItem('person_id');
+}
 let section_auth = document.querySelector('#section_auth');
 let section_res_pass = document.querySelector('#section_res_pass');
 let section_registry = document.querySelector('#section_registry');
@@ -25,6 +28,7 @@ auth_but.onclick = function(e) {
       } else {
         let person_id = result.person_id;
         if (person_id) {
+          localStorage.setItem('person_id', person_id);
           window.location.href = 'account.html?person_id=' + person_id;
         }
       }
@@ -126,9 +130,7 @@ reg_but.onclick = function(e) {
     email = document.querySelector('#email_input').value;
 
   if (login && password && password2 && name && family && fio_reb && num_ls && email) {
-  console.log(1);
     if (password !== password2) {
-      console.log(2);
       document.querySelector('#reg_log_result').innerHTML = 'Пароли не совпадают';
       return;
     }
@@ -137,6 +139,7 @@ reg_but.onclick = function(e) {
     xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=1&textFieldUsername=' + login + '&textFieldPassword=' + password + '&textFieldEmail=' + email + '&textFieldName=' + name + '&textFieldFamilia=' + family + '&textFieldFIOKids=' + fio_reb + '&textFieldLS=' + num_ls, true);
     xhr.onload = function() {
       let result = JSON.parse(this.responseText);
+      console.log(result);
       if (Number(result.status) === 200) {
         reg_but.value = 'Войти';
         document.querySelector('#reg_log_result').innerHTML = '<span style="color:green;">' + result[0].regstatus + '</span><br><a href="">Войти</a>';
@@ -145,9 +148,7 @@ reg_but.onclick = function(e) {
       }
     }
     xhr.send();
-
   } else {
-    console.log(login, password, password2, name, family, fio_reb, num_ls, email);
     check_valid_form(login, password, password2, name, family, fio_reb, num_ls, email);
   }
 };
