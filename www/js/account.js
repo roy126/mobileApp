@@ -6,8 +6,10 @@ if (person_id && Number(person_id) > 0) {
   xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=8&person_id=' + person_id, true);
   xhr.onload = function() {
     let result = JSON.parse(this.responseText);
+    console.log(result);
     if (Number(result.code) === 200) {
       document.querySelector('#num_ls').innerHTML = result.num_ls;
+      document.querySelector('#num_ls_input').value = result.num_ls;
       get_history(result.num_ls);
       if (result.childrens.length > 0) {
         let balance_all = 0;
@@ -216,6 +218,7 @@ document.querySelector('#pay_link').onclick = function() {
   section_history.style.display = 'none';
   section_pay.style.display = 'block';
   hash(true,'children');
+  document.querySelector('.result_pay').innerHTML = '';
 }
 document.querySelector('#history_link').onclick = function() {
   show_load();
@@ -403,7 +406,12 @@ document.querySelector('#pay_button').onclick = function(e) {
   num_ls.classList.remove('valid_input');
   summ.classList.remove('valid_input');
   if (num_ls.value && summ.value) {
-    //pay();
+    ipayCheckout({
+      amount: summ.value,
+      currency:'RUB',
+      description: 'ЛС №' + num_ls.value},
+      function(order) { showSuccessfulPurchase(order) },
+      function(order) { showFailurefulPurchase(order) })
   } else {
     if (!num_ls.value) {
       num_ls.classList.add('valid_input');
@@ -413,7 +421,24 @@ document.querySelector('#pay_button').onclick = function(e) {
     }
   }
 }
-
+function showSuccessfulPurchase(order){
+  let user_id = person_id;
+  let payid = order.orderNumber;
+  let pay = order.formattedAmount;
+  let ls =  document.querySelector('#num_ls_input').value;
+  if(user_id && payid && pay && ls){
+    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+    var xhr = new XHR();
+    xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=15&pay='+ pay + '&ls=' + ls, true);
+    xhr.onload = function() {
+      let result = JSON.parse(this.responseText);
+      if (Number(result.code) === 200) {
+        document.querySelector('.result_pay').innerHTML = '<span style="color:green;">Оплата прошла успешно!</span>';
+      }
+    }
+    xhr.send();
+  }
+}
 ////////////////
 
 function get_history(num_ls) {
