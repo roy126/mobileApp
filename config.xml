@@ -17,7 +17,7 @@
     <preference name="SplashMaintainAspectRatio" value="true" /> 
     <allow-navigation href="https://*youtube.com/*"/>
     <icon src="icon.png" />
-    <splash src="zastavka.png" />
+    <splash src="zastavka.png" platform="android" width="320" height="480"  />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
