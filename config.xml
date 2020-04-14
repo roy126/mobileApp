@@ -12,7 +12,7 @@
     <preference name="android-minSdkVersion" value="14" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="*"/>
     <plugin name="cordova-plugin-splashscreen" source="npm" />  
-    <preference name="SplashScreenDelay" value="3000" />  
+    <preference name="SplashScreenDelay" value="1000" />  
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="SplashMaintainAspectRatio" value="true" /> 
     <allow-navigation href="https://*youtube.com/*"/>
