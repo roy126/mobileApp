@@ -17,7 +17,6 @@
     <preference name="SplashMaintainAspectRatio" value="true" /> 
     <allow-navigation href="https://*youtube.com/*"/>
     <icon src="icon.png" />
-    <splash src="zastavka.png" platform="android" width="320" height="480"  />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -27,6 +26,7 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <splash src="zastavka.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
