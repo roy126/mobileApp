@@ -429,7 +429,7 @@ function showSuccessfulPurchase(order){
   if(user_id && payid && pay && ls){
     var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
     var xhr = new XHR();
-    xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=15&pay='+ pay + '&ls=' + ls, true);
+    xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=15&pay='+ pay + '&ls=' + ls + '&pay_id='+ payid, true);
     xhr.onload = function() {
       let result = JSON.parse(this.responseText);
       if (Number(result.code) === 200) {
