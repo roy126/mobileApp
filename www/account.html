@@ -7,13 +7,14 @@
   <title>Account</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://use.fontawesome.com/e015611673.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://3dsec.sberbank.ru/demopayment/docsite/assets/js/ipay.js"></script>
   <script src="https://securepayments.sberbank.ru/payment/docsite/assets/js/ipay.js"></script>
   <script>
-    var ipay = new IPAY({api_token: 'vvgaud0vue4k19jbort4vke338'});
+    var ipay = new IPAY({ api_token: 'vvgaud0vue4k19jbort4vke338' });
   //var ipay = new IPAY({api_token: 'YRF3C5RFICWISEWFR6GJ'});
-    
+
   </script>
 </head>
 
@@ -142,8 +143,8 @@
           <div class="cash_block">
             <div class="form_group">
               <label for="">Счет списания
-              <select id="combo_cash_from"></select>
-            </label>
+                <select id="combo_cash_from"></select>
+              </label>
               <div class="cash_balance_from"></div>
             </div>
             <div class="form_group">
@@ -172,9 +173,9 @@
         </div>
         <div class="body_acoount" style="height: 100vh;    align-items: flex-start;padding-top: 100px;">
           <form action="" class="form__pay auth_form" style="width: 70%;">
-            <input type="text"  placeholder="Лицевой счет" readonly id="num_ls_input">
-            <input type="number"  placeholder="Сумма" id="summ_input">
-            <button style="width: 70%;margin: 0 auto;" id="pay_button" >Пополнить</button>
+            <input type="text" placeholder="Лицевой счет" readonly id="num_ls_input">
+            <input type="number" placeholder="Сумма" id="summ_input">
+            <button style="width: 70%;margin: 0 auto;" id="pay_button">Пополнить</button>
             <div class="result_pay"></div>
           </form>
         </div>
@@ -206,7 +207,6 @@
         </div>
         <div class="body_acoount" style="height: 100vh;align-items: flex-start;padding-top: 20px;">
           <div class="block_menu">
-
           </div>
         </div>
       </div>

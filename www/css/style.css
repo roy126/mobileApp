@@ -123,8 +123,7 @@ body {
   flex-direction: column;
 }
 
-.block_log_in input[type='text'],
-input[type='password'] {
+.block_log_in input[type='text'], input[type='password'] {
   width: 100%;
   margin: 5px 0;
   padding: 10px;
@@ -250,7 +249,6 @@ input[type='password'] {
   text-transform: uppercase;
 }
 
-
 /*--------------------------------------*/
 
 .container {
@@ -270,11 +268,12 @@ input[type='password'] {
 .block_logo {
   margin-top: 50px;
 }
-.result_pay{
+
+.result_pay {
   text-align: center;
   margin-top: 15px;
-
 }
+
 .logo {
   margin: 0 auto;
   height: 90px;
@@ -284,9 +283,7 @@ input[type='password'] {
   background-size: contain;
 }
 
-.auth_form input[type='text'],
-.auth_form input[type='number'],
-.auth_form input[type='password'] {
+.auth_form input[type='text'], .auth_form input[type='number'], .auth_form input[type='password'] {
   padding: 15px 5px;
   border-radius: 5px;
   width: 80%;
@@ -491,8 +488,7 @@ a {
   padding-left: 4px;
 }
 
-.reg_form input[type="text"],
-.reg_form input[type="password"] {
+.reg_form input[type="text"], .reg_form input[type="password"] {
   padding: 15px 5px;
   border-radius: 5px;
   width: 100%;
@@ -551,8 +547,7 @@ a {
   outline: 0;
 }
 
-.reset_pass_form input[type="text"],
-.reset_pass_form input[type="password"] {
+.reset_pass_form input[type="text"], .reset_pass_form input[type="password"] {
   padding: 15px 5px;
   border-radius: 5px;
   width: 100%;
@@ -574,8 +569,7 @@ a {
   text-align: center;
 }
 
-#but_res_pass,
-#but_registry {
+#but_res_pass, #but_registry {
   text-decoration: underline;
 }
 
@@ -583,11 +577,7 @@ a {
   width: 80%;
 }
 
-#back_to_auth,
-#back_to_auth2,
-#back_to_account,
-#back_to_account2,
-#back_to_account3 {
+#back_to_auth, #back_to_auth2, #back_to_account, #back_to_account2, #back_to_account3 {
   color: white;
 }
 

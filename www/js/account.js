@@ -4,7 +4,7 @@ if (person_id && Number(person_id) > 0) {
   var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
   var xhr = new XHR();
   xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=8&person_id=' + person_id, true);
-  xhr.onload = function() {
+  xhr.onload = function () {
     let result = JSON.parse(this.responseText);
     console.log(result);
     if (Number(result.code) === 200) {
@@ -28,7 +28,7 @@ if (person_id && Number(person_id) > 0) {
 }
 
 //Предзагрузка страницы
-document.onreadystatechange = function() {
+document.onreadystatechange = function () {
   if (document.readyState === 'complete') {
     let obj = document.querySelector('#load');
     obj.style.display = 'none';
@@ -44,8 +44,8 @@ let section_history = document.querySelector('.section_history');
 let section_menu = document.querySelector('.section_menu');
 
 
-document.querySelector('.childrens').onclick = function(e) {
-  document.querySelectorAll('.child').forEach(function(item) {
+document.querySelector('.childrens').onclick = function (e) {
+  document.querySelectorAll('.child').forEach(function (item) {
     item.classList.remove('child_active');
   });
   if (e.target.classList.contains('child')) {
@@ -87,12 +87,12 @@ document.querySelector('.childrens').onclick = function(e) {
       }
     }
   }
-  document.querySelector('#bufet_check').onchange = function(e) {
+  document.querySelector('#bufet_check').onchange = function (e) {
     let student_id = this.getAttribute('student_id');
     let value = this.checked;
     editCheck(1, value, student_id);
   }
-  document.querySelector('#credit_check').onchange = function(e) {
+  document.querySelector('#credit_check').onchange = function (e) {
     let student_id = this.getAttribute('student_id');
     let value = this.checked;
     if (this.checked) {
@@ -103,7 +103,7 @@ document.querySelector('.childrens').onclick = function(e) {
     editCheck(2, value, student_id);
   }
 
-  document.querySelector('#credit_price').onchange = function(e, a, v) {
+  document.querySelector('#credit_price').onchange = function (e, a, v) {
     if (!isNaN(Number(this.value))) {
       let student_id = this.getAttribute('student_id');
       let summ = Number(this.value);
@@ -115,7 +115,7 @@ document.querySelector('.childrens').onclick = function(e) {
     }
   };
 }
-document.querySelector('#but_children').onclick = function() {
+document.querySelector('#but_children').onclick = function () {
   show_load();
   main.style.display = 'none';
   add_child.style.display = 'none';
@@ -124,10 +124,10 @@ document.querySelector('#but_children').onclick = function() {
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
   children.style.display = 'block';
-  hash(true,'children');
+  hash(true, 'children');
 };
 
-document.querySelector('#back').onclick = function() {
+document.querySelector('#back').onclick = function () {
   main.style.display = 'block';
   children.style.display = 'none';
   add_child.style.display = 'none';
@@ -138,7 +138,7 @@ document.querySelector('#back').onclick = function() {
   hash(false);
 
 }
-document.querySelector('#back_to_childrens').onclick = function() {
+document.querySelector('#back_to_childrens').onclick = function () {
   main.style.display = 'none';
   children.style.display = 'block';
   add_child.style.display = 'none';
@@ -146,10 +146,10 @@ document.querySelector('#back_to_childrens').onclick = function() {
   section_menu.style.display = 'none';
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
-  hash(true,'children');
+  hash(true, 'children');
 
 }
-document.querySelector('#back_to_childrens_2').onclick = function() {
+document.querySelector('#back_to_childrens_2').onclick = function () {
   main.style.display = 'none';
   children.style.display = 'block';
   add_child.style.display = 'none';
@@ -157,10 +157,10 @@ document.querySelector('#back_to_childrens_2').onclick = function() {
   section_menu.style.display = 'none';
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
-  hash(true,'children');
+  hash(true, 'children');
 
 }
-document.querySelector('#back_to_account').onclick = function() {
+document.querySelector('#back_to_account').onclick = function () {
   main.style.display = 'block';
   children.style.display = 'none';
   add_child.style.display = 'none';
@@ -170,7 +170,7 @@ document.querySelector('#back_to_account').onclick = function() {
   section_history.style.display = 'none';
   hash(false);
 }
-document.querySelector('#back_to_account3').onclick = function() {
+document.querySelector('#back_to_account3').onclick = function () {
   main.style.display = 'block';
   add_child.style.display = 'none';
   cash_flow.style.display = 'none';
@@ -179,7 +179,7 @@ document.querySelector('#back_to_account3').onclick = function() {
   section_history.style.display = 'none';
   hash(false);
 }
-document.querySelector('#back_to_account2').onclick = function() {
+document.querySelector('#back_to_account2').onclick = function () {
   if (this.getAttribute('reb')) {
     children.style.display = 'block';
     main.style.display = 'none';
@@ -194,7 +194,7 @@ document.querySelector('#back_to_account2').onclick = function() {
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
 }
-document.querySelector('.add_reb').onclick = function() {
+document.querySelector('.add_reb').onclick = function () {
   show_load();
   main.style.display = 'none';
   children.style.display = 'none';
@@ -203,12 +203,12 @@ document.querySelector('.add_reb').onclick = function() {
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
   add_child.style.display = 'block';
-  hash(true,'children');
+  hash(true, 'children');
   document.querySelector('#fio_reb_add').value = '';
   document.querySelector('#num_ls_reb_add').value = '';
   document.querySelector('#add_reb_result').innerHTML = '';
 }
-document.querySelector('#pay_link').onclick = function() {
+document.querySelector('#pay_link').onclick = function () {
   show_load();
   main.style.display = 'none';
   children.style.display = 'none';
@@ -217,10 +217,10 @@ document.querySelector('#pay_link').onclick = function() {
   add_child.style.display = 'none';
   section_history.style.display = 'none';
   section_pay.style.display = 'block';
-  hash(true,'children');
+  hash(true, 'children');
   document.querySelector('.result_pay').innerHTML = '';
 }
-document.querySelector('#history_link').onclick = function() {
+document.querySelector('#history_link').onclick = function () {
   show_load();
   main.style.display = 'none';
   children.style.display = 'none';
@@ -229,9 +229,9 @@ document.querySelector('#history_link').onclick = function() {
   section_pay.style.display = 'none';
   section_menu.style.display = 'none';
   section_history.style.display = 'block';
-  hash(true,'children');
+  hash(true, 'children');
 }
-document.querySelector('#menu_link').onclick = function() {
+document.querySelector('#menu_link').onclick = function () {
   get_menu();
   show_load();
   main.style.display = 'none';
@@ -241,10 +241,10 @@ document.querySelector('#menu_link').onclick = function() {
   section_pay.style.display = 'none';
   section_history.style.display = 'none';
   section_menu.style.display = 'block';
-  hash(true,'children');
+  hash(true, 'children');
 }
 
-document.querySelector('#pay_cash_link').onclick = function() {
+document.querySelector('#pay_cash_link').onclick = function () {
   show_load();
   if (childrens.length > 1) {
     let options = '<option></option>';
@@ -261,7 +261,7 @@ document.querySelector('#pay_cash_link').onclick = function() {
   section_menu.style.display = 'none';
   section_history.style.display = 'none';
   cash_flow.style.display = 'block';
-  hash(true,'children');
+  hash(true, 'children');
 }
 
 function editCheck(type, value, student_id, summ) {
@@ -270,14 +270,14 @@ function editCheck(type, value, student_id, summ) {
     var xhr = new XHR();
     let value2 = +value;
     xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=11&student_id=' + student_id + '&value=' + value2 + '&type=' + type + '&summ=' + summ, true);
-    xhr.onload = function() {
+    xhr.onload = function () {
       let result = JSON.parse(this.responseText);
     }
     xhr.send();
   }
 }
 
-document.querySelector('#add_reb_but').onclick = function() {
+document.querySelector('#add_reb_but').onclick = function () {
   let fio = document.querySelector('#fio_reb_add');
   let num_ls = document.querySelector('#num_ls_reb_add');
   if (fio.value && num_ls.value) {
@@ -286,7 +286,7 @@ document.querySelector('#add_reb_but').onclick = function() {
     var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
     var xhr = new XHR();
     xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=12&num_ls=' + num_ls.value + '&fio=' + fio.value + '&person_id=' + person_id, true);
-    xhr.onload = function() {
+    xhr.onload = function () {
       let result = JSON.parse(this.responseText);
       let res = '';
       if (Number(result.code) === 202) {
@@ -311,7 +311,7 @@ document.querySelector('#add_reb_but').onclick = function() {
   }
 }
 
-document.querySelector('#combo_cash_from').onchange = function(e) {
+document.querySelector('#combo_cash_from').onchange = function (e) {
   let num_ls_selected = this.value;
   if (num_ls_selected) {
     for (const item of document.querySelector('#combo_cash_to').children) {
@@ -334,7 +334,7 @@ document.querySelector('#combo_cash_from').onchange = function(e) {
   }
 }
 
-document.querySelector('#combo_cash_to').onchange = function(e) {
+document.querySelector('#combo_cash_to').onchange = function (e) {
   let num_ls_selected = this.value;
   if (num_ls_selected) {
     for (const item of document.querySelector('#combo_cash_from').children) {
@@ -357,7 +357,7 @@ document.querySelector('#combo_cash_to').onchange = function(e) {
   }
 }
 
-document.querySelector('.cash_flow_but').onclick = function() {
+document.querySelector('.cash_flow_but').onclick = function () {
   document.querySelector('.result_cash_flow').innerHTML = '';
   let obj_from = document.querySelector('#combo_cash_from');
   let obj_to = document.querySelector('#combo_cash_to');
@@ -387,7 +387,7 @@ document.querySelector('.cash_flow_but').onclick = function() {
   var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
   var xhr = new XHR();
   xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=13&from=' + obj_from[obj_from_index].value + '&to=' + obj_to[obj_to_index].value + '&summ=' + obj_summ_flow.value, true);
-  xhr.onload = function() {
+  xhr.onload = function () {
     let result = JSON.parse(this.responseText);
     if (Number(result.code) === 200) {
       obj_summ_flow.value = '';
@@ -399,7 +399,7 @@ document.querySelector('.cash_flow_but').onclick = function() {
 
 ////////////pay
 
-document.querySelector('#pay_button').onclick = function(e) {
+document.querySelector('#pay_button').onclick = function (e) {
   e.preventDefault();
   let num_ls = document.querySelector('#num_ls_input');
   let summ = document.querySelector('#summ_input');
@@ -408,10 +408,11 @@ document.querySelector('#pay_button').onclick = function(e) {
   if (num_ls.value && summ.value) {
     ipayCheckout({
       amount: summ.value,
-      currency:'RUB',
-      description: 'ЛС №' + num_ls.value},
-      function(order) { showSuccessfulPurchase(order) },
-      function(order) { showFailurefulPurchase(order) })
+      currency: 'RUB',
+      description: 'ЛС №' + num_ls.value
+    },
+      function (order) { showSuccessfulPurchase(order) },
+      function (order) { showFailurefulPurchase(order) })
   } else {
     if (!num_ls.value) {
       num_ls.classList.add('valid_input');
@@ -421,16 +422,16 @@ document.querySelector('#pay_button').onclick = function(e) {
     }
   }
 }
-function showSuccessfulPurchase(order){
+function showSuccessfulPurchase(order) {
   let user_id = person_id;
   let payid = order.orderNumber;
   let pay = order.formattedAmount;
-  let ls =  document.querySelector('#num_ls_input').value;
-  if(user_id && payid && pay && ls){
+  let ls = document.querySelector('#num_ls_input').value;
+  if (user_id && payid && pay && ls) {
     var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
     var xhr = new XHR();
-    xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=15&pay='+ pay + '&ls=' + ls + '&pay_id='+ payid, true);
-    xhr.onload = function() {
+    xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=15&pay=' + pay + '&ls=' + ls + '&pay_id=' + payid, true);
+    xhr.onload = function () {
       let result = JSON.parse(this.responseText);
       if (Number(result.code) === 200) {
         document.querySelector('.result_pay').innerHTML = '<span style="color:green;">Оплата прошла успешно!</span>';
@@ -446,7 +447,7 @@ function get_history(num_ls) {
     var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
     var xhr = new XHR();
     xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=10&num_ls=' + num_ls, true);
-    xhr.onload = function() {
+    xhr.onload = function () {
       let result = JSON.parse(this.responseText);
       let list = '';
       if (result.length > 0) {
@@ -454,9 +455,9 @@ function get_history(num_ls) {
           list += '<li class="operation" style="display: none;">' + item.type_movement + ' / ' + item.amount + ' / Баланс: ' + item.balance + '</li>';
         });
         document.querySelector('.history_list').innerHTML = list;
-        $(function() {
+        $(function () {
           $(".operation").slice(0, 7).show();
-          $("#loadMore").on('click', function(e) {
+          $("#loadMore").on('click', function (e) {
             e.preventDefault();
             $(".operation:hidden").slice(0, 7).slideDown();
           })
@@ -466,7 +467,7 @@ function get_history(num_ls) {
     xhr.send();
   }
 }
-document.querySelector('#history_link_reb').onclick = function() {
+document.querySelector('#history_link_reb').onclick = function () {
   let num_ls = this.getAttribute('num_ls');
   if (num_ls) {
     document.querySelector('#back_to_account2').setAttribute('reb', true);
@@ -478,14 +479,14 @@ document.querySelector('#history_link_reb').onclick = function() {
     add_child.style.display = 'none';
     section_pay.style.display = 'none';
     section_history.style.display = 'block';
-    hash(true,'children');
+    hash(true, 'children');
   }
 }
 
 function show_load() {
   let obj = document.querySelector('#load');
   obj.style.display = 'block';
-  setTimeout(function() {
+  setTimeout(function () {
     obj.style.display = 'none';
   }, 800);
 }
@@ -495,20 +496,20 @@ function get_menu() {
   var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
   var xhr = new XHR();
   xhr.open('GET', 'https://bpcard.ru/ajax/app.php?app_password=&app_number=14&school=МАОУ Гимназия №1&type_menu=Основное меню', true);
-  xhr.onload = function() {
+  xhr.onload = function () {
     let result = JSON.parse(this.responseText);
     let li = '';
     if (result && result.length > 0) {
-      result.forEach(function(item) {
+      result.forEach(function (item) {
         let li_type = '';
         let menu_p = '';
-        item.food.forEach(function(item_1) {
+        item.food.forEach(function (item_1) {
           if (item_1 === 'Завтрак') {
-            item.type_food[0].forEach(function(item_2) {
+            item.type_food[0].forEach(function (item_2) {
               menu_p += '<p class="menu_item_food">' + item_2.food + '</p>';
             });
           } else {
-            item.type_food[1].forEach(function(item_2) {
+            item.type_food[1].forEach(function (item_2) {
               menu_p += '<p class="menu_item_food">' + item_2.food + '</p>';
             });
           }
@@ -522,7 +523,7 @@ function get_menu() {
       });
       menu_block.innerHTML = '<ul class="ul_menu_main">' + li + '</ul>';
     }
-    $('.menu_item').click(function(e) {
+    $('.menu_item').click(function (e) {
       let child = $(this).next('.hidden_menu')[0];
       if ($(this).children('i').hasClass('fa-plus')) {
         $(this).children('i').removeClass('fa-plus').addClass('fa-minus');
@@ -532,7 +533,7 @@ function get_menu() {
         child.style.display = 'none';
       }
     });
-    $('.menu_food_item').click(function(e) {
+    $('.menu_food_item').click(function (e) {
       let child = $(this).next('.hidden_menu_type')[0];
       if ($(this).children('i').hasClass('fa-plus')) {
         $(this).children('i').removeClass('fa-plus').addClass('fa-minus');
@@ -546,57 +547,57 @@ function get_menu() {
   xhr.send();
 }
 
-function func_back_button(){
-  let array = [main,children,add_child,cash_flow,section_pay,section_history,section_menu];
- array.forEach(function(obj){
-  if(obj.style.display === 'block'){
-   switch(obj.className){
-    case 'children':
-      show_main();
-      break;
-      case 'add_child':
-        show_main();
-      break;
-      case 'cash_flow':
-        show_main();
-      break;
-      case 'section_pay':
-        show_main();
-      break;
-      case 'section_history':
-        show_main();
-      break;
-      case 'section_menu':
-        show_main();
-        break;
-      case 'main':
-        navigator.app.exitApp();
-        break;
-   } 
+function func_back_button() {
+  let array = [main, children, add_child, cash_flow, section_pay, section_history, section_menu];
+  array.forEach(function (obj) {
+    if (obj.style.display === 'block') {
+      switch (obj.className) {
+        case 'children':
+          show_main();
+          break;
+        case 'add_child':
+          show_main();
+          break;
+        case 'cash_flow':
+          show_main();
+          break;
+        case 'section_pay':
+          show_main();
+          break;
+        case 'section_history':
+          show_main();
+          break;
+        case 'section_menu':
+          show_main();
+          break;
+        case 'main':
+          navigator.app.exitApp();
+          break;
+      }
+    }
+  });
+  function show_main() {
+    children.style.display = 'none';
+    cash_flow.style.display = 'none';
+    add_child.style.display = 'none';
+    section_pay.style.display = 'none';
+    section_history.style.display = 'none';
+    main.style.display = 'block';
+    hash(false);
   }
- });
- function show_main(){
-  children.style.display = 'none';
-  cash_flow.style.display = 'none';
-  add_child.style.display = 'none';
-  section_pay.style.display = 'none';
-  section_history.style.display = 'none';
-  main.style.display = 'block';
-  hash(false);
- }
 }
 
-function hash(bool,str){
-  if(bool){
+function hash(bool, str) {
+  if (bool) {
     location.hash = str;
-  }else{
+  } else {
     location.hash = '';
   }
 }
 
-window.addEventListener("hashchange", function(e) {
-  if(e.oldURL.length > e.newURL.length)
-  func_back_button();
+window.addEventListener("hashchange", function (e) {
+  if (e.oldURL.length > e.newURL.length)
+    func_back_button();
 })
 
 /* end */
